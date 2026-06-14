@@ -7,26 +7,25 @@ import GallerySection from "./components/GallerySection";
 
 export default function Home() {
   return (
-    <div className="mx-40">
+    <div className="px-6 sm:px-12 md:px-20 lg:mx-40 lg:px-0">
+      {/* Hero */}
       <div className="flex flex-row">
         <ProfileHero />
       </div>
 
-      <div className="mt-8 flex flex-row gap-16">
-        <div className="w-3/4">
+      {/* Main content — stacks on mobile, side-by-side on lg+ */}
+      <div className="mt-8 flex flex-col lg:flex-row gap-8 lg:gap-16">
+        <div className="w-full lg:w-3/4">
           <AboutSection />
           <ProjectsSection />
           <CertificationsSection />
-          
         </div>
-        <div className="w-1/4">
+        <div className="w-full lg:w-1/4">
           <ExperienceTimeline />
         </div>
       </div>
-      <div>
-        <GallerySection />
-      </div>
 
+      <GallerySection />
     </div>
   );
 }

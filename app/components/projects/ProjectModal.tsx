@@ -15,11 +15,11 @@ const ProjectModal = ({
     onClick={onClose}
   >
     <div
-      className="relative bg-white rounded-2xl shadow-xl w-full max-w-4xl flex flex-row overflow-hidden"
+      className="relative bg-white rounded-2xl shadow-xl w-full max-w-4xl flex flex-col sm:flex-row overflow-hidden max-h-[90vh] overflow-y-auto"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Media — left side */}
-      <div className="relative w-[460px] shrink-0 bg-coffee-brown/10 h-[360px]">
+      {/* Media */}
+      <div className="relative w-full sm:w-[460px] shrink-0 bg-coffee-brown/10 h-[220px] sm:h-[360px]">
         {project.video ? (
           <video
             src={project.video}

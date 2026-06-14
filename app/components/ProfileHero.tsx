@@ -4,8 +4,8 @@ import HeroButtons from './HeroButtons'
 
 const ProfileHero = () => {
   return (
-    <section className='flex flex-row items-align mt-12 gap-4'>
-      <div className='relative w-[160px] h-[160px] shrink-0'>
+    <section className='flex flex-col sm:flex-row items-center sm:items-start mt-12 gap-6'>
+      <div className='relative w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] shrink-0'>
         <Image 
           src='/images/hero/profilepicture.png'
           alt='Profile'
@@ -15,15 +15,15 @@ const ProfileHero = () => {
         />
       </div>
 
-      <div className='ml-4'>
+      <div className='ml-0 sm:ml-4 text-center sm:text-left'>
         <div>
-          <h1 className='text-3xl font-bold'>
+          <h1 className='text-2xl sm:text-3xl font-bold'>
             Renz Paolo Ayuban
           </h1>
           <p className='text-sm font-semibold mt-1'>Dasmariñas, Cavite</p>
         </div>
         
-        <div className='flex flex-row gap-4 text-md font-semibold mt-7'>
+        <div className='flex flex-row gap-4 text-md font-semibold mt-7 justify-center sm:justify-start'>
           <p>Student</p>
           <p>\</p>
           <p>Developer</p>

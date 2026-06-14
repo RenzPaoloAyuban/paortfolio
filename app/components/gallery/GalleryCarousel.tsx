@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 type GalleryImage = {
   src: string
@@ -20,11 +20,25 @@ const images: GalleryImage[] = [
   { src: "/images/gallery/C(old) (St)art 2025!.jpg", alt: "C(old) (St)art 2025!", label: "C(old) (St)art 2025!" },
 ]
 
-const VISIBLE = 3
+function useVisible() {
+  const [visible, setVisible] = useState(3)
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 640) setVisible(1)
+      else if (window.innerWidth < 1024) setVisible(2)
+      else setVisible(3)
+    }
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+  return visible
+}
 
 const GalleryCarousel = () => {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<GalleryImage | null>(null)
+  const VISIBLE = useVisible()
 
   const canPrev = index > 0
   const canNext = index + VISIBLE < images.length
@@ -51,16 +65,15 @@ const GalleryCarousel = () => {
             <button
               key={img.src}
               onClick={() => setSelected(img)}
-              className="relative flex-1 h-[200px] rounded-xl overflow-hidden bg-coffee-brown/10 group cursor-pointer focus:outline-none"
+              className="relative flex-1 h-[180px] sm:h-[200px] rounded-xl overflow-hidden bg-coffee-brown/10 group cursor-pointer focus:outline-none"
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              {/* Label bottom-right */}
               <span className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-md backdrop-blur-sm leading-snug max-w-[80%] text-right">
                 {img.label}
               </span>
@@ -82,14 +95,14 @@ const GalleryCarousel = () => {
       {/* Modal */}
       {selected && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
           onClick={() => setSelected(null)}
         >
           <div
             className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Blurred background — same image stretched */}
+            {/* Blurred background */}
             <div className="absolute inset-0">
               <Image
                 src={selected.src}
@@ -101,9 +114,9 @@ const GalleryCarousel = () => {
               />
             </div>
 
-            {/* Sharp image centered on top */}
-            <div className="relative flex items-center justify-center min-h-[70vh]">
-              <div className="relative w-full h-[70vh]">
+            {/* Sharp image */}
+            <div className="relative flex items-center justify-center min-h-[50vh] sm:min-h-[70vh]">
+              <div className="relative w-full h-[50vh] sm:h-[70vh]">
                 <Image
                   src={selected.src}
                   alt={selected.alt}
@@ -115,7 +128,7 @@ const GalleryCarousel = () => {
             </div>
 
             {/* Label */}
-            <div className="absolute bottom-4 right-4 bg-black/50 text-white text-sm px-3 py-1.5 rounded-lg backdrop-blur-sm">
+            <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs sm:text-sm px-3 py-1.5 rounded-lg backdrop-blur-sm">
               {selected.label}
             </div>
             {/* Close */}
