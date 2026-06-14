@@ -16,7 +16,7 @@ export default function RootLayout({
       lang="en"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{children}<footer className="mt-auto py-6 text-center text-sm text-coffee-brown/40">© 2026 Renz Paolo Ayuban. All rights reserved.</footer></body>
     </html>
   );
 }
