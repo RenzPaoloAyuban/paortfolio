@@ -14,15 +14,18 @@ const ProjectCard = ({
 }) => (
   <div
     onClick={onClick}
-    className="flex flex-row gap-4 rounded-xl border border-coffee-brown/10 bg-coffee-brown/[0.03] p-4 hover:bg-coffee-brown/[0.06] transition-colors duration-200 cursor-pointer"
+    className="flex flex-row gap-4 rounded-xl border border-coffee-brown/10 bg-coffee-brown/[0.03] p-4 hover:bg-coffee-brown/[0.06] hover:border-coffee-brown/25 hover:shadow-md transition-all duration-200 cursor-pointer group"
   >
     <div className="relative w-[120px] h-[80px] shrink-0 rounded-lg overflow-hidden bg-coffee-brown/10">
-      <Image src={project.image} alt={project.name} fill className="object-cover" />
+      <Image src={project.image} alt={project.name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
     </div>
     <div className="flex flex-col justify-between gap-2 min-w-0">
       <div>
-        <h3 className="text-sm font-bold text-coffee-brown">{project.name}</h3>
-        <p className="text-sm text-coffee-brown/70 mt-1 leading-snug">{project.short}</p>
+        <div className="flex items-baseline gap-2">
+          <h3 className="text-sm font-bold text-coffee-brown group-hover:text-coffee-brown transition-colors">{project.name}</h3>
+          <span className="text-xs text-coffee-brown/40">{project.year}</span>
+        </div>
+        <p className="text-sm text-coffee-brown/70 mt-1 leading-snug group-hover:text-coffee-brown/90 transition-colors">{project.short}</p>
       </div>
       <div className="flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (

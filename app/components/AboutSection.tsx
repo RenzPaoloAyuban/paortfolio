@@ -12,7 +12,7 @@ const AboutSection = () => {
                 Outside of code, I&apos;ve been involved in student governance as CSSO Comelec Chairperson, competed in hackathons like DICT OpenGov and AWS Innovation Cup, attended SuperAI 2025 in Singapore, and spent time as an apprentice at DocypherLabs. I also pull shots part-time at Eleonor&apos;s Cafe, which honestly keeps me grounded.
             </p>
             <p>
-                My projects range from civic-tech platforms and business intelligence dashboards to mobile apps and a meta-horror game — different domains, same intention: build things that are useful, clear, and a little bit considered. Currently exploring AI integration and workflow automation, and always looking for the next problem worth solving.
+                My projects range from civic-tech platforms and business intelligence dashboards to mobile apps, a meta-horror game, and an IoT flood monitoring system that won Best in Research — Capstone Project, Engineering Tech — different domains, same intention: build things that are useful, clear, and a little bit considered. Currently exploring AI integration and workflow automation, and always looking for the next problem worth solving.
             </p>
         </div>
     </section>

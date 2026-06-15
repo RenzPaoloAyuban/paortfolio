@@ -11,6 +11,7 @@ type GalleryImage = {
 
 const images: GalleryImage[] = [
   { src: "/images/gallery/OpenGov.jpg",               alt: "DICT OpenGov Hackathon 2025", label: "DICT OpenGov Hackathon 2025" },
+  { src: "/images/gallery/Flowaction.jpg",             alt: "FlowAction Capstone", label: "FlowAction · Capstone Project" },
   { src: "/images/gallery/SuperAI-1.jpg",             alt: "SuperAI 2025", label: "SuperAI 2025 · Singapore" },
   { src: "/images/gallery/SuperAI-2.jpg",             alt: "SuperAI 2025", label: "SuperAI 2025 · Singapore" },
   { src: "/images/gallery/SuperAI-3.jpg",             alt: "SuperAI 2025", label: "SuperAI 2025 · Singapore" },
@@ -38,13 +39,23 @@ function useVisible() {
 const GalleryCarousel = () => {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<GalleryImage | null>(null)
+  const [direction, setDirection] = useState<'left' | 'right'>('right')
+  const [animKey, setAnimKey] = useState(0)
   const VISIBLE = useVisible()
 
   const canPrev = index > 0
   const canNext = index + VISIBLE < images.length
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1))
-  const next = () => setIndex((i) => Math.min(images.length - VISIBLE, i + 1))
+  const prev = () => {
+    setDirection('left')
+    setAnimKey(k => k + 1)
+    setIndex((i) => Math.max(0, i - 1))
+  }
+  const next = () => {
+    setDirection('right')
+    setAnimKey(k => k + 1)
+    setIndex((i) => Math.min(images.length - VISIBLE, i + 1))
+  }
 
   return (
     <>
@@ -60,7 +71,13 @@ const GalleryCarousel = () => {
         </button>
 
         {/* Images */}
-        <div className="flex gap-3 w-full overflow-hidden">
+        <div
+          key={animKey}
+          style={{
+            animation: `${direction === 'right' ? 'slideInRight' : 'slideInLeft'} 0.25s ease-out both`
+          }}
+          className="flex gap-3 w-full overflow-hidden"
+        >
           {images.slice(index, index + VISIBLE).map((img) => (
             <button
               key={img.src}
@@ -96,10 +113,12 @@ const GalleryCarousel = () => {
       {selected && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          style={{ animation: 'fadeIn 0.2s ease-out both' }}
           onClick={() => setSelected(null)}
         >
           <div
             className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl"
+            style={{ animation: 'scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both' }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Blurred background */}

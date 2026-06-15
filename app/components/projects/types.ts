@@ -5,4 +5,6 @@ export type Project = {
   tags: string[]
   image: string
   video?: string
+  url?: string
+  year: number
 }

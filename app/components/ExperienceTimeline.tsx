@@ -26,19 +26,19 @@ const ExperienceTimeline = () => {
 
         <div className="flex flex-col gap-6">
           {events.map((event, index) => (
-            <div key={index} className="relative flex gap-5 pl-7">
+            <div key={index} className="relative flex gap-5 pl-7 group">
               {/* Dot */}
-              <div className="absolute left-0 top-1.5 size-[15px] rounded-full border-2 border-coffee-brown bg-white shrink-0" />
+              <div className="absolute left-0 top-1.5 size-[15px] rounded-full border-2 border-coffee-brown bg-white shrink-0 transition-colors duration-200 group-hover:bg-coffee-brown" />
 
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-semibold text-coffee-brown/50 uppercase tracking-wider">
+              <div className="flex flex-col gap-0.5 transition-transform duration-200 group-hover:translate-x-1">
+                <span className="text-xs font-semibold text-coffee-brown/50 uppercase tracking-wider transition-colors duration-200 group-hover:text-coffee-brown/70">
                   {event.date}
                 </span>
-                <span className="text-sm font-semibold text-coffee-brown leading-snug">
+                <span className="text-sm font-semibold text-coffee-brown leading-snug transition-colors duration-200 group-hover:text-coffee-brown">
                   {event.title}
                 </span>
                 {event.sub && (
-                  <span className="text-xs text-coffee-brown/60 leading-snug">
+                  <span className="text-xs text-coffee-brown/60 leading-snug transition-colors duration-200 group-hover:text-coffee-brown/80">
                     {event.sub}
                   </span>
                 )}

@@ -12,14 +12,16 @@ const ProjectModal = ({
 }) => (
   <div
     className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm"
+    style={{ animation: 'fadeIn 0.2s ease-out both' }}
     onClick={onClose}
   >
     <div
       className="relative bg-white rounded-2xl shadow-xl w-full max-w-4xl flex flex-col sm:flex-row overflow-hidden max-h-[90vh] overflow-y-auto"
+      style={{ animation: 'scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both' }}
       onClick={(e) => e.stopPropagation()}
     >
       {/* Media */}
-      <div className="relative w-full sm:w-[460px] shrink-0 bg-coffee-brown/10 h-[220px] sm:h-[360px]">
+      <div className="relative w-full sm:w-[460px] shrink-0 bg-coffee-brown/10 min-h-[200px] sm:h-[360px]">
         {project.video ? (
           <video
             src={project.video}
@@ -34,7 +36,7 @@ const ProjectModal = ({
             src={project.image}
             alt={project.name}
             fill
-            className="object-cover"
+            className="object-contain"
           />
         )}
       </div>
@@ -51,7 +53,10 @@ const ProjectModal = ({
         </button>
 
         <div className="flex flex-col gap-2 pr-6">
-          <h2 className="text-lg font-bold text-coffee-brown">{project.name}</h2>
+          <div className="flex items-baseline gap-2">
+            <h2 className="text-lg font-bold text-coffee-brown">{project.name}</h2>
+            <span className="text-sm text-coffee-brown/40">{project.year}</span>
+          </div>
           <p className="text-sm text-coffee-brown/80 leading-relaxed font-semibold">
             {project.short}
           </p>
@@ -71,10 +76,25 @@ const ProjectModal = ({
           ))}
         </div>
 
-        <button className="mt-auto self-start flex items-center gap-1.5 px-4 py-2 rounded-lg bg-coffee-brown text-cream-white text-sm font-semibold hover:bg-coffee-brown/80 transition-colors">
-          Visit project
-          <span className="text-base leading-none">↗</span>
-        </button>
+        {project.url ? (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto self-start flex items-center gap-1.5 px-4 py-2 rounded-lg bg-coffee-brown text-cream-white text-sm font-semibold hover:bg-coffee-brown/80 transition-colors"
+          >
+            Visit project
+            <span className="text-base leading-none">↗</span>
+          </a>
+        ) : (
+          <button
+            disabled
+            className="mt-auto self-start flex items-center gap-1.5 px-4 py-2 rounded-lg bg-coffee-brown/30 text-cream-white text-sm font-semibold cursor-not-allowed"
+          >
+            Visit project
+            <span className="text-base leading-none">↗</span>
+          </button>
+        )}
       </div>
     </div>
   </div>

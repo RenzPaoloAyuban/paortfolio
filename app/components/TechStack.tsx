@@ -23,7 +23,7 @@ const categories = [
 
 const TechStack = () => {
   return (
-    <section>
+    <section className="mt-12">
       <h1 className="text-xl font-bold">Tech Stack</h1>
       <div className="mt-6 flex flex-col gap-4">
         {categories.map((cat) => (
@@ -35,7 +35,7 @@ const TechStack = () => {
               {cat.items.map((item) => (
                 <span
                   key={item}
-                  className="px-2.5 py-1 text-sm rounded-md border border-coffee-brown/20 text-coffee-brown bg-coffee-brown/5"
+                  className="px-2.5 py-1 text-sm rounded-md border border-coffee-brown/20 text-coffee-brown bg-coffee-brown/5 hover:bg-coffee-brown hover:text-cream-white hover:border-coffee-brown transition-colors duration-200 cursor-default"
                 >
                   {item}
                 </span>
