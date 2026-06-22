@@ -2,12 +2,12 @@ const certifications = [
   {
     name: "Cyber Threat Management",
     issuer: "Cisco",
-    url: "#", // replace with Credly link
+    url: "https://www.credly.com/badges/e697f11c-7c22-46f4-be01-fb5a76d1ef8f/public_url", // replace with Credly link
   },
   {
     name: "Introduction to Cybersecurity",
     issuer: "Cisco",
-    url: "#", // replace with Credly link
+    url: "https://www.credly.com/badges/78e382c4-16ee-4ed6-a775-adc56df7c11c/public_url", // replace with Credly link
   },
 ]
 
